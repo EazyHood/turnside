@@ -1,0 +1,50 @@
+{
+  "schema": "turnside-release/1",
+  "capturedAtUtc": "2026-10-18T03:57:01.9630071Z",
+  "status": "local-reviewed-not-published-by-build-agent",
+  "runtimeFiles": [
+    {
+      "path": "index.html",
+      "bytes": 9463,
+      "sha256": "17c748e57049f4c2964e8677ad5ab4b58beef5767ae9cae2748009acf95c8f8a"
+    },
+    {
+      "path": "style.css",
+      "bytes": 19741,
+      "sha256": "dc7ea4a5155aadd6a330916445ca4ce2a4ffb5da72b7e5150e18070101e2548e"
+    },
+    {
+      "path": "app.js",
+      "bytes": 17294,
+      "sha256": "d742d97a8e43b7005c73f6537daeb986f92378c6a693a4306e04e641ce2fba81"
+    },
+    {
+      "path": "model.js",
+      "bytes": 10846,
+      "sha256": "a02fbfd6638723d7ea4088ffd644cf20cfdc3c3bd5feaeed528e200a1860ba86"
+    },
+    {
+      "path": "icon.svg",
+      "bytes": 209,
+      "sha256": "9a6e458446db6fdda3bddab8e78e3807eb87100b9ab13297c256380ccba52793"
+    }
+  ],
+  "validation": {
+    "automatedTestsPassed": 17,
+    "syntaxChecksPassed": true,
+    "physicalPrinterTested": false,
+    "independentGeometryCases": [
+      "a4-long",
+      "a4-short",
+      "letter-long",
+      "letter-short"
+    ],
+    "independentGeometryEvidence": "D:/IA/agentes/codex-cuenta3/2026-10-18-turnside-review/geometry-result.json",
+    "modelSha256Reviewed": "a02fbfd6638723d7ea4088ffd644cf20cfdc3c3bd5feaeed528e200a1860ba86"
+  },
+  "handoff": [
+    "Parent publishes source and static HTTPS site.",
+    "Parent records real demonstration and validates final public links.",
+    "Parent completes event form and preserves submission receipt."
+  ]
+}

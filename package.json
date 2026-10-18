@@ -1,0 +1,14 @@
+{
+  "name": "turnside",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A local-first flashcard print workspace with visible duplex pairing.",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test model.test.mjs",
+    "check": "node --check app.js && node --check model.js && node --check server.mjs"
+  },
+  "engines": {"node": ">=22"},
+  "license": "MIT"
+}

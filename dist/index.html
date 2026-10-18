@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Make study cards that match on both sides. Edit, check duplex layout and print with Turnside, a free local-first workspace.">
+  <meta name="theme-color" content="#202e40">
+  <title>Turnside — Study cards, ready for paper</title>
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a href="#workspace" class="skip-link">Skip to the workspace</a>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Turnside home"><svg viewBox="0 0 36 36" aria-hidden="true"><path d="M7 5h19v26H7z"/><path d="M12 5h17l-7 7H12z"/></svg><span>turnside<span class="brand-dot">.</span></span></a>
+    <span class="top-note">A little print workshop for your next big idea.</span>
+    <button id="help-button" class="quiet-button">How it works <span aria-hidden="true">↗</span></button>
+  </header>
+
+  <main id="workspace">
+    <section class="deck-heading" aria-labelledby="page-heading">
+      <div><div class="workspace-type"><span class="status-dot" aria-hidden="true"></span> YOUR PRINT WORKSPACE</div><h1 id="page-heading">Good questions.<br class="mobile-only"> Ready for paper.</h1><p>Edit the cards. Check both sides. Take your learning off-screen.</p></div>
+      <div class="deck-tools"><button id="import-button" class="button secondary">Import deck</button><button id="export-button" class="button secondary">Save a copy <span aria-hidden="true">↓</span></button></div>
+    </section>
+
+    <div id="storage-warning" class="warning hidden" role="status"></div>
+    <section class="workbench" aria-label="Flashcard editor and print preview">
+      <aside class="editor">
+        <div class="editor-top"><label for="deck-title">Deck name</label><input id="deck-title" maxlength="80" autocomplete="off"><div class="deck-meta"><span id="card-count">8 cards</span><span id="save-status" role="status">Saved on this device</span></div></div>
+        <div class="card-list-heading"><h2>Your cards</h2><button id="paste-button" class="text-button">Paste a list</button></div>
+        <div id="card-list" class="card-list" aria-label="Cards"></div>
+        <div class="editor-footer"><button id="add-button" class="button add-button"><span aria-hidden="true">＋</span> Add a card</button><button id="new-button" class="text-button">Start fresh</button><p id="example-note" class="example-note">Illustrative ecology deck. Replace it with your own notes.</p></div>
+      </aside>
+
+      <div class="preview-column">
+        <div class="preview-toolbar"><div><h2>See the other side.</h2><p id="sheet-description">Sheet 1 of 1 · 8 cards per sheet</p></div><div class="side-switch" role="group" aria-label="Visible side"><button id="front-button" aria-pressed="true">Questions</button><button id="back-button" aria-pressed="false">Answers</button></div></div>
+        <div class="paper-stage" id="paper-stage">
+          <div class="binding-guide" aria-hidden="true"><span>TURN HERE</span><svg viewBox="0 0 24 56"><path d="M17 4C3 5 3 48 17 51M12 45l6 6-6 3"/></svg></div>
+          <div class="paper-wrap" id="paper-wrap"><div class="sheet" id="sheet"><div id="front-sheet" class="sheet-face sheet-front"></div><div id="back-sheet" class="sheet-face sheet-back"></div></div></div>
+          <div id="empty-preview" class="empty-preview hidden"><svg viewBox="0 0 80 80" aria-hidden="true"><path d="M18 14h44v52H18zM28 31h24M28 41h16"/></svg><h3>Every deck starts with a question.</h3><p>Add your first card or try the example deck.</p><button id="example-button" class="button secondary">Load example deck</button></div>
+        </div>
+        <div class="preview-caption"><p id="pairing-note"><span class="tiny-square" aria-hidden="true"></span> The answer travels with its question.</p><div class="sheet-pager"><button id="prev-sheet" class="icon-button" aria-label="Previous sheet">←</button><span id="page-count">1 / 1</span><button id="next-sheet" class="icon-button" aria-label="Next sheet">→</button></div></div>
+
+        <div class="print-settings">
+          <label class="select-field">Paper size<select id="paper-size"><option value="a4">A4 · 210 × 297 mm</option><option value="letter">US Letter · 8.5 × 11 in</option></select></label>
+          <label class="select-field">Turn the sheet on<select id="binding-edge"><option value="long">Long edge · like a book</option><option value="short">Short edge · like a notepad</option></select></label>
+          <button id="prepare-button" class="button primary">Prepare to print <span aria-hidden="true">↗</span></button>
+        </div>
+        <div class="print-footnote"><span aria-hidden="true">↔</span><p id="dimensions">8 cards per sheet. Cut along the dotted guides.</p><span class="device-only">No account. No uploads.</span></div>
+      </div>
+    </section>
+    <footer class="page-footer"><p>Made for the moment you need paper, not another screen.</p><p>Your deck stays in this browser. <button id="privacy-button" class="text-button">About your data</button></p></footer>
+  </main>
+
+  <div id="toast" class="toast hidden" role="status"></div>
+
+  <dialog id="edit-dialog" aria-labelledby="edit-title"><form id="card-form"><div class="dialog-heading"><div><span class="eyebrow" id="edit-number">CARD 1</span><h2 id="edit-title">One thought at a time.</h2></div><button type="button" class="icon-button close-dialog" aria-label="Close card editor">×</button></div><label for="card-front">Question <span id="front-counter">0 / 140</span></label><textarea id="card-front" maxlength="140" rows="3" required placeholder="What do you want to remember?"></textarea><label for="card-back">Answer <span id="back-counter">0 / 300</span></label><textarea id="card-back" maxlength="300" rows="5" required placeholder="Keep it short enough to recall."></textarea><p id="edit-error" class="form-error hidden" role="alert"></p><div class="dialog-actions"><button type="button" id="delete-card" class="text-button destructive">Delete card</button><button type="submit" class="button primary">Save card</button></div></form></dialog>
+
+  <dialog id="paste-dialog" aria-labelledby="paste-title"><form id="paste-form"><div class="dialog-heading"><div><span class="eyebrow">FROM YOUR NOTES</span><h2 id="paste-title">Bring a list along.</h2></div><button type="button" class="icon-button close-dialog" aria-label="Close paste list">×</button></div><label for="paste-text">Questions and answers</label><p id="paste-hint">Copy two columns from a spreadsheet, or separate each question and answer with a tab. One pair per line. These cards are added to your deck.</p><textarea id="paste-text" rows="8" aria-describedby="paste-hint" placeholder="What is mutualism?&#9;Both species benefit."></textarea><p id="paste-error" class="form-error hidden" role="alert"></p><div class="dialog-actions"><span id="paste-count">Up to 120 cards per deck</span><button type="submit" class="button primary">Add to deck</button></div></form></dialog>
+
+  <dialog id="print-dialog" class="print-dialog" aria-labelledby="print-title"><div class="dialog-heading"><div><span class="eyebrow">BEFORE THE FIRST CUT</span><h2 id="print-title">A small check.<br>A clean print.</h2></div><button type="button" class="icon-button close-dialog" aria-label="Close print preparation">×</button></div><div id="preflight-output"></div><div class="print-checklist"><div><span class="check-number">1</span><div><h3>Check the paper settings</h3><p id="print-settings-summary"></p><p>Use portrait, actual size / 100%, and turn browser headers and footers off.</p></div></div><div><span class="check-number">2</span><div><h3>Try one sheet first</h3><p>Printer alignment varies. Download the numbered test, print it double-sided, and hold it to a light. Matching numbers should sit behind each other.</p><button id="test-download" class="text-button">Download alignment test ↓</button></div></div><div><span class="check-number">3</span><div><h3>Print, then cut</h3><p>The file alternates questions and answers for each sheet. Open it in a desktop browser, then print or save as PDF. It also works offline.</p></div></div></div><div class="dialog-actions"><span id="print-total"></span><button id="print-download" class="button primary">Download print sheets ↓</button></div><p class="small-note">No printer is connected to this app. Nothing prints until you choose it in your browser.</p></dialog>
+
+  <dialog id="info-dialog" aria-labelledby="info-title"><div class="dialog-heading"><h2 id="info-title"></h2><button class="icon-button close-dialog" aria-label="Close information">×</button></div><div id="info-content" class="prose"></div></dialog>
+  <dialog id="confirm-dialog" aria-labelledby="confirm-title"><div class="dialog-heading"><h2 id="confirm-title">Start a fresh deck?</h2><button class="icon-button close-dialog" aria-label="Cancel fresh deck">×</button></div><p>Your current deck will be replaced on this device. Save a copy first if you want to keep it.</p><div class="dialog-actions"><button id="cancel-fresh" class="button secondary">Keep this deck</button><button id="confirm-fresh" class="button primary">Start fresh</button></div></dialog>
+  <input id="file-input" type="file" accept=".json,application/json" hidden>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
